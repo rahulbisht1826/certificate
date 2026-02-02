@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Certificate Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- html2pdf.js for exporting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Editor Sidebar -->
+        <aside class="editor-panel">
+            <header>
+                <h1>Certificate Editor</h1>
+                <p>Customize your professional certificate</p>
+            </header>
+
+            <section class="form-section">
+                <h3>Institution Details</h3>
+                <div class="input-group">
+                    <label for="instName">Institution Name</label>
+                    <input type="text" id="instName" placeholder="e.g. Stanford University"
+                        value="Excellence Institute of Technology">
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h3>Student Details</h3>
+                <div class="input-group">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" id="studentName" placeholder="Full Name" value="Johnathan Doe">
+                </div>
+                <div class="input-group">
+                    <label for="fatherName">Father's Name</label>
+                    <input type="text" id="fatherName" placeholder="Father's Name" value="Robert Doe">
+                </div>
+                <div class="input-group">
+                    <label for="startDate">Course Start Date</label>
+                    <input type="text" id="startDate" placeholder="e.g. Jan 2024" value="Jan 2024">
+                </div>
+                <div class="input-group">
+                    <label for="endDate">Course End Date</label>
+                    <input type="text" id="endDate" placeholder="e.g. Jun 2024" value="Jun 2024">
+                </div>
+                <div class="input-group">
+                    <label for="sig1">Signature 1 Title</label>
+                    <input type="text" id="sig1" placeholder="e.g. Director" value="Director">
+                </div>
+                <div class="input-group">
+                    <label for="sig2">Signature 2 Title</label>
+                    <input type="text" id="sig2" placeholder="e.g. Principal" value="Principal">
+                </div>
+            </section>
+
+            <section class="form-section">
+                <div class="section-header">
+                    <h3>Academic Performance</h3>
+                    <button id="addSubject" class="btn-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="subjectsList" class="subjects-list">
+                    <!-- Dynamic subjects will appear here -->
+                </div>
+            </section>
+
+            <footer class="editor-footer">
+                <button id="downloadPdf" class="btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    Download Certificate
+                </button>
+            </footer>
+        </aside>
+
+        <!-- Preview Area -->
+        <main class="preview-area">
+            <div id="certificateWrapper" class="certificate-wrapper">
+                <div id="certificate" class="certificate">
+                    <div class="cert-border-outer"></div>
+                    <div class="cert-border-inner"></div>
+
+                    <div class="cert-content">
+                        <div class="cert-header">
+                            <h2 id="certInstNameDisplay" class="cert-inst-name">Excellence Institute of Technology</h2>
+                            <p class="cert-description">
+                                Has successfully completed the required course of study and passed the final examination
+                                with the following academic record.
+                            </p>
+                            <p class="cert-location">RAMANAGARA - 562159</p>
+                        </div>
+
+                        <div class="cert-body">
+                            <h1 class="cert-title">Certificate of Achievement</h1>
+                            <p class="cert-award-text">This is to certify that</p>
+                            <h2 id="certStudentNameDisplay" class="cert-student-name">Johnathan Doe</h2>
+                            <p class="cert-info-text">
+                                D/o <span id="certFatherNameDisplay">Robert Doe</span>
+                            </p>
+
+                            <table class="marks-table">
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Max Marks</th>
+                                        <th>Obtained</th>
+                                        <th>Grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="certMarksDisplay">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                                <tfoot>
+                                    <tr class="total-row">
+                                        <td colspan="2">Aggregate Performance</td>
+                                        <td id="certTotalMarks">0</td>
+                                        <td id="certFinalGrade">-</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <div class="cert-footer">
+                            <div class="signature">
+                                <div class="sig-line"></div>
+                                <p id="certSig1Display">Director</p>
+                            </div>
+                            <div class="signature">
+                                <div class="sig-line"></div>
+                                <p id="certSig2Display">Principal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

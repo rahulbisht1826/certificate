@@ -1,0 +1,447 @@
+:root {
+    --primary: #c5a059;
+    --primary-light: #e0c28d;
+    --dark: #1a1a1a;
+    --text: #333;
+    --bg: #f4f4f7;
+    --glass: rgba(255, 255, 255, 0.7);
+    --border: rgba(0, 0, 0, 0.1);
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--dark);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Editor Panel */
+.editor-panel {
+    width: 400px;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid var(--border);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+.editor-panel h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: 0.2rem;
+}
+
+.editor-panel header p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.form-section {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.form-section h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+}
+
+.subject-item {
+    display: grid;
+    grid-template-columns: 1fr 60px 60px auto;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-items: end;
+}
+
+.subject-item input {
+    padding: 0.6rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+}
+
+.btn-icon-del {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.2s;
+}
+
+.btn-icon-del:hover {
+    transform: scale(1.1);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: #b08d48;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+}
+
+.btn-icon {
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Preview Area */
+.preview-area {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    /* Align to top to allow natural scrolling */
+    justify-content: center;
+    padding: 2rem;
+    overflow: auto;
+    background: #eef1f5;
+    position: relative;
+}
+
+.certificate-wrapper {
+    background: white;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    transform-origin: top center;
+    transition: transform 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.certificate {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    padding: 25mm 20mm;
+    background: #fff;
+    color: #2c3e50;
+    overflow: hidden;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Elegant Borders */
+.cert-border-outer {
+    position: absolute;
+    top: 5mm;
+    left: 5mm;
+    right: 5mm;
+    bottom: 5mm;
+    border: 8px double var(--primary);
+}
+
+.cert-border-inner {
+    position: absolute;
+    top: 12mm;
+    left: 12mm;
+    right: 12mm;
+    bottom: 12mm;
+    border: 1px solid var(--primary-light);
+}
+
+.cert-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cert-header {
+    text-align: center;
+    margin-bottom: 5mm;
+}
+
+.logo-icon {
+    display: inline-block;
+    width: 15mm;
+    height: 15mm;
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    line-height: 13mm;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 3mm;
+    font-family: 'Playfair Display', serif;
+}
+
+.cert-inst-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.cert-body {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cert-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    /* Increased significantly */
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8mm;
+    font-style: italic;
+    line-height: 1.2;
+}
+
+.cert-award-text {
+    font-size: 1.1rem;
+    margin-bottom: 2mm;
+}
+
+.cert-student-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    border-bottom: 2px solid var(--primary-light);
+    display: inline-block;
+    padding: 0 10mm;
+    margin: 3mm 0;
+}
+
+.cert-info-text {
+    font-size: 1rem;
+    margin-top: 2mm;
+}
+
+.cert-description {
+    max-width: 90%;
+    margin: 4mm auto 1mm auto;
+    line-height: 1.4;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.cert-location {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--primary);
+    margin-bottom: 1mm;
+    letter-spacing: 1px;
+}
+
+.cert-batch-period {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 4mm;
+    font-weight: 500;
+}
+
+/* Marks Table */
+.marks-table {
+    width: 95%;
+    margin: 5mm auto;
+    border-collapse: collapse;
+}
+
+.marks-table th,
+.marks-table td {
+    padding: 6px;
+    border: 1px solid #eee;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.marks-table th {
+    background: #fdfaf3;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.total-row td {
+    font-weight: 700;
+    background: #fdfaf3;
+    color: var(--primary);
+}
+
+.cert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 5mm;
+}
+
+.signature {
+    width: 40mm;
+    text-align: center;
+}
+
+.sig-line {
+    border-top: 1px solid #999;
+    margin-bottom: 3mm;
+}
+
+.signature p {
+    font-size: 0.8rem;
+    color: #777;
+    font-weight: 600;
+}
+
+.seal {
+    width: 25mm;
+    height: 25mm;
+    border: 4px double var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-15deg);
+}
+
+.seal-inner {
+    width: 20mm;
+    height: 20mm;
+    border: 2px solid var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 900;
+    color: var(--primary);
+    text-align: center;
+}
+
+/* Print Specific Styles */
+@media print {
+    body {
+        background: white;
+    }
+
+    .editor-panel {
+        display: none;
+    }
+
+    .preview-area {
+        padding: 0;
+        background: white;
+    }
+
+    .certificate-wrapper {
+        box-shadow: none;
+        transform: none !important;
+    }
+
+    .certificate {
+        margin: 0;
+        border: none;
+    }
+
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+    .app-container {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .editor-panel {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .preview-area {
+        padding: 1rem;
+        height: auto;
+    }
+
+    .certificate-wrapper {
+        transform: scale(0.7);
+    }
+}
