@@ -77,6 +77,13 @@ body {
     margin-bottom: 1rem;
 }
 
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
 .input-group:last-child {
     margin-bottom: 0;
 }
@@ -258,7 +265,15 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.cert-logo {
+    width: 35mm;
+    height: auto;
+    margin-bottom: 5mm;
+    object-fit: contain;
 }
 
 .cert-title {
@@ -283,12 +298,22 @@ body {
     border-bottom: 2px solid var(--primary-light);
     display: inline-block;
     padding: 0 10mm;
-    margin: 3mm 0;
+    margin: 3mm 0 1mm 0;
+}
+
+.cert-meta-info {
+    display: flex;
+    justify-content: center;
+    gap: 10mm;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 2mm;
 }
 
 .cert-info-text {
     font-size: 1rem;
-    margin-top: 2mm;
+    margin-top: 0;
 }
 
 .cert-description {
@@ -473,29 +498,51 @@ body {
             "max obtained"
             "del del";
         gap: 0.8rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding-bottom: 1.2rem;
+        margin-bottom: 1.2rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    .subject-item input:nth-child(1) {
+    .field-wrap.name-field {
         grid-area: name;
     }
 
-    .subject-item input:nth-child(2) {
+    .field-wrap.max-field {
         grid-area: max;
     }
 
-    .subject-item input:nth-child(3) {
+    .field-wrap.marks-field {
         grid-area: obtained;
+    }
+
+    .field-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .field-wrap label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-transform: uppercase;
+    }
+
+    .field-wrap input {
+        width: 100%;
+        padding: 0.7rem;
     }
 
     .subject-item .btn-icon-del {
         grid-area: del;
-        background: rgba(255, 77, 77, 0.1);
-        border-radius: 6px;
+        background: rgba(255, 77, 77, 0.08);
+        border: 1px solid rgba(255, 77, 77, 0.2);
+        border-radius: 8px;
         width: 100%;
+        height: 40px;
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 
     .cert-title {

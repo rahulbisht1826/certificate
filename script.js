@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Selectors
     const instNameInput = document.getElementById('instName');
     const studentNameInput = document.getElementById('studentName');
+    const studentIdInput = document.getElementById('studentId');
+    const regNoInput = document.getElementById('regNo');
     const fatherNameInput = document.getElementById('fatherName');
     const startDateInput = document.getElementById('startDate');
     const endDateInput = document.getElementById('endDate');
@@ -21,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Display Selectors
     const certInstNameDisplay = document.getElementById('certInstNameDisplay');
     const certStudentNameDisplay = document.getElementById('certStudentNameDisplay');
+    const certStudentIdDisplay = document.getElementById('certStudentIdDisplay');
+    const certRegNoDisplay = document.getElementById('certRegNoDisplay');
     const certFatherNameDisplay = document.getElementById('certFatherNameDisplay');
     const certMarksDisplay = document.getElementById('certMarksDisplay');
     const certTotalMarks = document.getElementById('certTotalMarks');
@@ -34,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateBasics = () => {
         certInstNameDisplay.textContent = instNameInput.value || 'INSTITUTION NAME';
         certStudentNameDisplay.textContent = studentNameInput.value || 'STUDENT NAME';
+        certStudentIdDisplay.textContent = studentIdInput.value || 'ID-XXX';
+        certRegNoDisplay.textContent = regNoInput.value || 'REG-XXX';
         certFatherNameDisplay.textContent = fatherNameInput.value || 'FATHER\'S NAME';
         certStartDateDisplay.textContent = startDateInput.value || 'START DATE';
         certEndDateDisplay.textContent = endDateInput.value || 'END DATE';
@@ -83,10 +89,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const div = document.createElement('div');
             div.className = 'subject-item';
             div.innerHTML = `
-                <input type="text" value="${subject.name}" placeholder="Subject" onchange="window.updateSubjectField(${index}, 'name', this.value)">
-                <input type="number" value="${subject.max}" placeholder="Max" onchange="window.updateSubjectField(${index}, 'max', this.value)">
-                <input type="number" value="${subject.obtained}" placeholder="Marks" onchange="window.updateSubjectField(${index}, 'obtained', this.value)">
-                <button class="btn-icon-del" onclick="window.removeSubject(${index})">
+                <div class="field-wrap name-field">
+                    <label>Subject</label>
+                    <input type="text" value="${subject.name}" placeholder="Subject" oninput="window.updateSubjectField(${index}, 'name', this.value)">
+                </div>
+                <div class="field-wrap max-field">
+                    <label>Max</label>
+                    <input type="number" value="${subject.max}" placeholder="Max" oninput="window.updateSubjectField(${index}, 'max', this.value)">
+                </div>
+                <div class="field-wrap marks-field">
+                    <label>Marks</label>
+                    <input type="number" value="${subject.obtained}" placeholder="Marks" oninput="window.updateSubjectField(${index}, 'obtained', this.value)">
+                </div>
+                <button class="btn-icon-del" onclick="window.removeSubject(${index})" title="Remove Subject">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                 </button>
             `;
@@ -109,6 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event Listeners
     instNameInput.addEventListener('input', updateBasics);
     studentNameInput.addEventListener('input', updateBasics);
+    studentIdInput.addEventListener('input', updateBasics);
+    regNoInput.addEventListener('input', updateBasics);
     fatherNameInput.addEventListener('input', updateBasics);
     startDateInput.addEventListener('input', updateBasics);
     endDateInput.addEventListener('input', updateBasics);

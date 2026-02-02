@@ -27,7 +27,7 @@
                 <div class="input-group">
                     <label for="instName">Institution Name</label>
                     <input type="text" id="instName" placeholder="e.g. Stanford University"
-                        value="Excellence Institute of Technology">
+                        value="Moonlight Institute of Information Technology">
                 </div>
             </section>
 
@@ -36,6 +36,16 @@
                 <div class="input-group">
                     <label for="studentName">Student Name</label>
                     <input type="text" id="studentName" placeholder="Full Name" value="Johnathan Doe">
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" placeholder="e.g. STU001" value="STU001">
+                    </div>
+                    <div class="input-group">
+                        <label for="regNo">Reg. No</label>
+                        <input type="text" id="regNo" placeholder="e.g. REG9988" value="REG9988">
+                    </div>
                 </div>
                 <div class="input-group">
                     <label for="fatherName">Father's Name</label>
@@ -92,7 +102,8 @@
 
                     <div class="cert-content">
                         <div class="cert-header">
-                            <h2 id="certInstNameDisplay" class="cert-inst-name">Excellence Institute of Technology</h2>
+                            <h2 id="certInstNameDisplay" class="cert-inst-name">Moonlight Institute of Information
+                                Technology</h2>
                             <p class="cert-description">
                                 Has successfully completed the required course of study and passed the final examination
                                 with the following academic record.
@@ -101,9 +112,14 @@
                         </div>
 
                         <div class="cert-body">
+                            <img src="logo.png" alt="MIIT Logo" class="cert-logo">
                             <h1 class="cert-title">Certificate of Achievement</h1>
                             <p class="cert-award-text">This is to certify that</p>
                             <h2 id="certStudentNameDisplay" class="cert-student-name">Johnathan Doe</h2>
+                            <div class="cert-meta-info">
+                                <p>Student ID: <span id="certStudentIdDisplay">STU001</span></p>
+                                <p>Reg. No: <span id="certRegNoDisplay">REG9988</span></p>
+                            </div>
                             <p class="cert-info-text">
                                 D/o <span id="certFatherNameDisplay">Robert Doe</span>
                             </p>
