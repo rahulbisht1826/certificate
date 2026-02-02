@@ -423,10 +423,15 @@ body {
 }
 
 /* Responsive adjustments */
-@media (max-width: 1100px) {
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto;
+        /* Allow scrolling the whole page on mobile */
+    }
+
     .app-container {
         flex-direction: column;
-        overflow-y: auto;
+        height: auto;
     }
 
     .editor-panel {
@@ -434,14 +439,74 @@ body {
         height: auto;
         border-right: none;
         border-bottom: 1px solid var(--border);
+        padding: 1.5rem;
+        position: relative;
     }
 
     .preview-area {
         padding: 1rem;
-        height: auto;
+        min-height: 400px;
+        background: #dae0e8;
     }
 
     .certificate-wrapper {
-        transform: scale(0.7);
+        margin: 0 auto;
+    }
+
+    .form-section {
+        padding: 0.8rem;
+    }
+
+    .subject-item {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "name name"
+            "max obtained"
+            "del del";
+        gap: 0.8rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .subject-item input:nth-child(1) {
+        grid-area: name;
+    }
+
+    .subject-item input:nth-child(2) {
+        grid-area: max;
+    }
+
+    .subject-item input:nth-child(3) {
+        grid-area: obtained;
+    }
+
+    .subject-item .btn-icon-del {
+        grid-area: del;
+        background: rgba(255, 77, 77, 0.1);
+        border-radius: 6px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .cert-title {
+        font-size: 2.2rem;
+        /* Scale down for mobile preview */
+    }
+
+    .cert-student-name {
+        font-size: 1.8rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .editor-panel h1 {
+        font-size: 1.2rem;
+    }
+
+    .btn-primary {
+        padding: 0.8rem;
+        font-size: 0.9rem;
     }
 }
