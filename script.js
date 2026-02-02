@@ -136,20 +136,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const scalePreview = () => {
         const wrapper = document.querySelector('.preview-area');
         const cert = document.getElementById('certificate');
-        if (!wrapper || !cert) return;
+        const wrapperDiv = document.getElementById('certificateWrapper');
+        if (!wrapper || !cert || !wrapperDiv) return;
 
-        const padding = 40; // 20px on each side
+        const padding = 40;
         const availableWidth = wrapper.clientWidth - padding;
         const availableHeight = wrapper.clientHeight - padding;
 
-        const scaleW = availableWidth / cert.offsetWidth;
-        const scaleH = availableHeight / cert.offsetHeight;
+        const isMobile = window.innerWidth <= 768;
 
-        // Use the smaller scale to ensure it fits both ways
-        // But also ensure we don't scale UP beyond 1 unless specifically desired
-        let scale = Math.min(scaleW, scaleH);
+        let scale;
+        if (isMobile) {
+            // On mobile, scale to fit width and allow vertical scrolling
+            scale = availableWidth / cert.offsetWidth;
+            // Adjust wrapper height to match scaled certificate height so we don't have huge gaps
+            wrapperDiv.style.height = (cert.offsetHeight * scale) + "px";
+            wrapperDiv.style.width = (cert.offsetWidth * scale) + "px";
+        } else {
+            // Desktop: fit both dimensions
+            const scaleW = availableWidth / cert.offsetWidth;
+            const scaleH = availableHeight / cert.offsetHeight;
+            scale = Math.min(scaleW, scaleH);
+            wrapperDiv.style.height = "auto";
+            wrapperDiv.style.width = "auto";
+        }
 
-        const wrapperDiv = document.getElementById('certificateWrapper');
         wrapperDiv.style.transform = `scale(${scale})`;
     };
 
