@@ -278,11 +278,10 @@ body {
 
 .cert-title {
     font-family: 'Playfair Display', serif;
-    font-size: 4.5rem;
-    /* Increased significantly */
+    font-size: 3rem;
     font-weight: 700;
     color: var(--primary);
-    margin-bottom: 8mm;
+    margin-bottom: 6mm;
     font-style: italic;
     line-height: 1.2;
 }
